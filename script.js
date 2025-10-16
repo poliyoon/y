@@ -82,10 +82,9 @@ function collide(board, player) {
   const { matrix, pos } = player;
   for (let y = 0; y < matrix.length; y++) {
     for (let x = 0; x < matrix[y].length; x++) {
-      if (
-        matrix[y][x] &&
-        (board[y + pos.y] && board[y + pos.y][x + pos.x]) !== 0
-      ) {
+      if (!matrix[y][x]) continue;
+      const row = board[y + pos.y];
+      if (!row || row[x + pos.x] !== 0) {
         return true;
       }
     }
